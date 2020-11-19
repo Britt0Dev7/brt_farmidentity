@@ -1,0 +1,58 @@
+-- Em seu criador de personagem, no server.lua pesquise por: finishedCharacter ou outro --
+
+E cole isto vRP.giveInventoryItem(user_id,"identidade",1,true)
+
+-----------------------------------------------------------------------------
+
+-- em seu vrp_identidade, cole isto no: 
+
+Server.lua
+
+function vRPN.checkItemIdentity()
+    local source = source
+    local user_id = vRP.getUserId(source)
+    if user_id then
+        if vRP.getInventoryItemAmount(user_id,"identidade") >= 1 then
+            return true 
+        else
+            TriggerClientEvent("Notify",source,"negado","Você não possui uma identidade.")
+            return false
+        end
+    end
+end
+
+Client.lua
+
+Pesquise por If IsControlJustPressed(0,344) then
+Logo abaixo cole
+
+if vRPNserver.checkItemIdentity() then
+
+e coloque um "end" no final
+
+-----------------------------------------------------------------------------
+
+-- em seu vrp_player, cole isto no server.lua
+
+Na linha 878, pressione ENTER e cole:
+
+local identidade1 = vRP.tryGetInventoryItem(nplayer,"identidade",1)
+	if identidade1 then
+	vRP.giveInventoryItem(user_id,"identidaderoubada",1)
+end
+
+-----------------------------------------------------------------------------
+
+em seu vrp/blips_markers.lua
+
+Cole isto:
+
+	{ -913.97,-2039.99,9.40,498,11,"Centro de Licenças",0.4 }
+
+------------------------------------------------------------------------------
+
+Crie três itens em sua base, "identidade" , "identidaderoubada" , "boletim"
+
+Qualquer coisa chama nói 
+
+@Victtinho#2513 -- Discord
